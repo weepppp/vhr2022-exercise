@@ -4,4 +4,4 @@ spring:
     url: jdbc:mysql:///vhr?serverTimezone=Asia/Shanghai
     password: 1234
 server:
-  port: 8082
+  port: 8083

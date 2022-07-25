@@ -53,6 +53,15 @@ public class SecurityConfig {
                 })
                 .permitAll()
                 .and()
+                .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessHandler((req,resp,auth) ->{
+                    resp.setContentType("application/json; charset=UTF-8");
+                    RespBean respBean = RespBean.ok("注销成功");
+                    String s = new ObjectMapper().writeValueAsString(respBean);
+                    resp.getWriter().write(s);
+                })
+                .and()
                 .csrf().disable()
                 .exceptionHandling().authenticationEntryPoint((req, resp, e) -> {
                     resp.setStatus(HttpStatus.UNAUTHORIZED.value());

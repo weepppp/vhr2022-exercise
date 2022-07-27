@@ -1,7 +1,7 @@
 package com.qfedu.vhr.admin.controller;
 
-import com.qfedu.vhr.system.entity.vo.MenuVo;
-import com.qfedu.vhr.system.service.IMenuService;
+import com.qfedu.vhr.framework.entity.vo.MenuVo;
+import com.qfedu.vhr.framework.service.IMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,7 +18,7 @@ public class MenuController {
     IMenuService menuService;
 
     @GetMapping("/menus")
-    public List<MenuVo> getAllMenus(){
+    public List<MenuVo> getAllMenus() {
         return menuService.getAllMenus();
     }
 }

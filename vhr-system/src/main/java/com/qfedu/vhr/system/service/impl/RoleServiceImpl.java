@@ -1,6 +1,6 @@
 package com.qfedu.vhr.system.service.impl;
 
-import com.qfedu.vhr.system.entity.Role;
+import com.qfedu.vhr.framework.entity.Role;
 import com.qfedu.vhr.system.mapper.RoleMapper;
 import com.qfedu.vhr.system.service.IRoleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

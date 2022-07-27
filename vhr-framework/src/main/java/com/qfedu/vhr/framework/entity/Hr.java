@@ -1,16 +1,21 @@
 package com.qfedu.vhr.framework.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author qf
@@ -61,6 +66,17 @@ public class Hr implements Serializable, UserDetails {
     private String userface;
 
     private String remark;
+
+    @TableField(exist = false)
+    private Set<String> roles;
+
+    public void setRoles(Set<String> roles) {
+        this.roles = roles;
+    }
+
+    public Set<String> getRoles() {
+        return roles;
+    }
 
     public Integer getId() {
         return id;
@@ -138,7 +154,10 @@ public class Hr implements Serializable, UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        List<SimpleGrantedAuthority> collect = roles.stream().map(role -> {
+            return new SimpleGrantedAuthority(role);
+        }).collect(Collectors.toList());
+        return collect;
     }
 
     @Override
@@ -169,16 +188,16 @@ public class Hr implements Serializable, UserDetails {
     @Override
     public String toString() {
         return "Hr{" +
-            "id = " + id +
-            ", name = " + name +
-            ", phone = " + phone +
-            ", telephone = " + telephone +
-            ", address = " + address +
-            ", enabled = " + enabled +
-            ", username = " + username +
-            ", password = " + password +
-            ", userface = " + userface +
-            ", remark = " + remark +
-        "}";
+                "id = " + id +
+                ", name = " + name +
+                ", phone = " + phone +
+                ", telephone = " + telephone +
+                ", address = " + address +
+                ", enabled = " + enabled +
+                ", username = " + username +
+                ", password = " + password +
+                ", userface = " + userface +
+                ", remark = " + remark +
+                "}";
     }
 }

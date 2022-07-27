@@ -1,6 +1,7 @@
 package com.qfedu.vhr.system.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -25,6 +26,7 @@ public class Position implements Serializable {
      */
     private String name;
 
+//    @TableField("createDate")
     private LocalDateTime createDate;
 
     private Boolean enabled;

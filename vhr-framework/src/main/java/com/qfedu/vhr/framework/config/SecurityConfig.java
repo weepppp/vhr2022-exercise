@@ -4,15 +4,18 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qfedu.vhr.framework.entity.Hr;
 import com.qfedu.vhr.framework.entity.RespBean;
 import org.apache.ibatis.reflection.wrapper.ObjectWrapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 
 import javax.security.auth.message.AuthException;
 import javax.servlet.ServletException;
@@ -26,9 +29,23 @@ import java.io.IOException;
 @Configuration
 public class SecurityConfig {
 
+    @Autowired
+    MyFilterInvocationSecurityMetadataSource myFilterInvocationSecurityMetadataSource;
+
+    @Autowired
+    MyAccess myAccess;
+
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .withObjectPostProcessor(new ObjectPostProcessor<FilterSecurityInterceptor>() {
+                    @Override
+                    public <O extends FilterSecurityInterceptor> O postProcess(O object) {
+                        object.setSecurityMetadataSource(myFilterInvocationSecurityMetadataSource);
+                        object.setAccessDecisionManager(myAccess);
+                        return object;
+                    }
+                })
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -55,7 +72,7 @@ public class SecurityConfig {
                 .and()
                 .logout()
                 .logoutUrl("/logout")
-                .logoutSuccessHandler((req,resp,auth) ->{
+                .logoutSuccessHandler((req, resp, auth) -> {
                     resp.setContentType("application/json; charset=UTF-8");
                     RespBean respBean = RespBean.ok("注销成功");
                     String s = new ObjectMapper().writeValueAsString(respBean);
@@ -64,7 +81,7 @@ public class SecurityConfig {
                 .and()
                 .csrf().disable()
                 .exceptionHandling().authenticationEntryPoint((req, resp, e) -> {
-                    resp.setStatus(HttpStatus.UNAUTHORIZED.value());
+            resp.setStatus(HttpStatus.UNAUTHORIZED.value());
             resp.setContentType("application/json; charset=UTF-8");
             RespBean respBean = RespBean.error("尚未登录请登录");
             String s = new ObjectMapper().writeValueAsString(respBean);

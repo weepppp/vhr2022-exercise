@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.qfedu.vhr.system.mapper.MenuMapper">
+<mapper namespace="com.qfedu.vhr.framework.mapper.MenuMapper">
 
-    <resultMap id="BaseResultMap" type="com.qfedu.vhr.system.entity.Menu">
+    <resultMap id="BaseResultMap" type="com.qfedu.vhr.framework.entity.Menu">
         <id property="id" column="id"/>
         <result property="url" column="url"/>
         <result property="name" column="name"/>
@@ -15,8 +15,8 @@
         <result property="requireAuth" column="requireAuth"/>
     </resultMap>
 
-    <resultMap id="MenuWithChildren" type="com.qfedu.vhr.system.entity.vo.MenuVo" extends="BaseResultMap">
-        <collection property="children" ofType="com.qfedu.vhr.system.entity.Menu">
+    <resultMap id="MenuWithChildren" type="com.qfedu.vhr.framework.entity.vo.MenuVo" extends="BaseResultMap">
+        <collection property="children" ofType="com.qfedu.vhr.framework.entity.Menu">
             <id property="id" column="id2"/>
             <result property="name" column="name2"/>
             <result property="enabled" column="enabled2"/>
@@ -27,9 +27,19 @@
         </collection>
     </resultMap>
 
+    <resultMap id="MenuWithRole" type="com.qfedu.vhr.framework.entity.vo.MenuRoleVo" extends="BaseResultMap">
+        <collection property="roles" ofType="com.qfedu.vhr.framework.entity.Role">
+        </collection>
+    </resultMap>
+
     <select id="getAllMenusByHrId" resultMap="MenuWithChildren">
         select m1.*,m2.component as component2,m2.enabled as enabled2,m2.id as id2,m2.name as name2,m2.parentId as parentId2,m2.path as path2
 from menu m1,menu m2,menu_role mr,hr_role hrr
 where m1.id=m2.parentId and m2.id = mr.mid and mr.rid = hrr.rid and hrr.hrid = #{hrid} ORDER BY m1.id
+    </select>
+
+
+    <select id="getAllMenuRoles" resultMap="MenuWithRole">
+        select m.id,m.url,r.name from menu m left join menu_role mr on m.id  = mr.mid LEFT JOIN role r on mr.rid = r.id ORDER BY m.id
     </select>
 </mapper>

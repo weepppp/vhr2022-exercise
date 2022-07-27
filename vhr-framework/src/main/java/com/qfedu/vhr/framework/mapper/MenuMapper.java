@@ -1,8 +1,9 @@
-package com.qfedu.vhr.system.mapper;
+package com.qfedu.vhr.framework.mapper;
 
-import com.qfedu.vhr.system.entity.Menu;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.qfedu.vhr.system.entity.vo.MenuVo;
+import com.qfedu.vhr.framework.entity.Menu;
+import com.qfedu.vhr.framework.entity.vo.MenuRoleVo;
+import com.qfedu.vhr.framework.entity.vo.MenuVo;
 
 import java.util.List;
 
@@ -17,5 +18,7 @@ import java.util.List;
 public interface MenuMapper extends BaseMapper<Menu> {
 
     List<MenuVo> getAllMenusByHrId(Integer hrid);
+
+    List<MenuRoleVo> getAllMenuRoles();
 
 }

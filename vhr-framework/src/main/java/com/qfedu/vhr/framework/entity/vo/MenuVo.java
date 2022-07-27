@@ -1,6 +1,7 @@
-package com.qfedu.vhr.system.entity.vo;
+package com.qfedu.vhr.framework.entity.vo;
 
-import com.qfedu.vhr.system.entity.Menu;
+
+import com.qfedu.vhr.framework.entity.Menu;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.qfedu.vhr.system.mapper;
 
-import com.qfedu.vhr.system.entity.Role;
+import com.qfedu.vhr.framework.entity.Role;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

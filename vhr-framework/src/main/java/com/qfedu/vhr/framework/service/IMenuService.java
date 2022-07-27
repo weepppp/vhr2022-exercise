@@ -1,8 +1,9 @@
-package com.qfedu.vhr.system.service;
+package com.qfedu.vhr.framework.service;
 
-import com.qfedu.vhr.system.entity.Menu;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.qfedu.vhr.system.entity.vo.MenuVo;
+import com.qfedu.vhr.framework.entity.Menu;
+import com.qfedu.vhr.framework.entity.vo.MenuRoleVo;
+import com.qfedu.vhr.framework.entity.vo.MenuVo;
 
 import java.util.List;
 
@@ -17,5 +18,7 @@ import java.util.List;
 public interface IMenuService extends IService<Menu> {
 
     List<MenuVo> getAllMenus();
+
+    List<MenuRoleVo> getAllMenuRoles();
 
 }

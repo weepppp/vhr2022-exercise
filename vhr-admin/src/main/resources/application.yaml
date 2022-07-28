@@ -1,7 +1,7 @@
 spring:
   datasource:
     username: root
-    url: jdbc:mysql:///vhr?serverTimezone=Asia/Shanghai
+    url: jdbc:mysql:///vhr?serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true
     password: 1234
 server:
   port: 8083

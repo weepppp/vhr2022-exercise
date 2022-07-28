@@ -13,4 +13,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IJoblevelService extends IService<Joblevel> {
 
+
+    int addJobLevel(Joblevel joblevel);
+
+    int deleteJobLevel(Integer id);
 }

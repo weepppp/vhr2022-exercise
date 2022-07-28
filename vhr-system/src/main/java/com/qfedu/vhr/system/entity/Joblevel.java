@@ -2,6 +2,8 @@ package com.qfedu.vhr.system.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -27,6 +29,7 @@ public class Joblevel implements Serializable {
 
     private String titleLevel;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "Asia/Shanghai")
     private LocalDateTime createDate;
 
     private Boolean enabled;

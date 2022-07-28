@@ -1,8 +1,11 @@
 package com.qfedu.vhr.system.entity;
 
+import com.alibaba.excel.annotation.ExcelProperty;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -19,16 +22,21 @@ public class Position implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "id", type = IdType.AUTO)
+    @ExcelProperty("职位编号")
     private Integer id;
 
     /**
      * 职位
      */
+    @ExcelProperty("职位名称")
     private String name;
 
 //    @TableField("createDate")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "Asia/Shanghai")
+    @ExcelProperty("创建时间")
     private LocalDateTime createDate;
 
+    @ExcelProperty("是否启用")
     private Boolean enabled;
 
     public Integer getId() {

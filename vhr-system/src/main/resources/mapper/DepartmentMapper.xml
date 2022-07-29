@@ -13,13 +13,13 @@
     <!--        -->
     <!--    </resultMap>-->
 
-    <!--    <resultMap id="DepWithChildren" type="com.qfedu.vhr.system.entity.vo.DepartMentVo" extends="BaseResultMap" >-->
+    <!--    <resultMap id="DepWithChildren" type="com.qfedu.vhr.system.entity.vo.DepartmentChildrenVo" extends="BaseResultMap" >-->
     <!--        <collection property="children" ofType="com.qfedu.vhr.system.entity.Department"-->
     <!--                    select="com.qfedu.vhr.system.mapper.DepartmentMapper.getAllDepts" column="id">-->
     <!--        </collection>-->
     <!--    </resultMap>-->
 
-    <resultMap id="BaseResultMap" type="com.qfedu.vhr.system.entity.vo.DepartMentVo">
+    <resultMap id="BaseResultMap" type="com.qfedu.vhr.system.entity.vo.DepartmentChildrenVo">
         <id property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="parentId" column="parentId"/>
@@ -31,7 +31,17 @@
         </collection>
     </resultMap>
 
+
     <select id="getAllDepts" resultMap="BaseResultMap">
         select * from department where parentId=#{pid}
+    </select>
+
+    <select id="addDepartment" statementType="CALLABLE">
+            call addDep(#{name,jdbcType=VARCHAR,mode=IN},#{parentId,jdbcType=INTEGER,mode=IN},#{enabled,
+            jdbcType=BOOLEAN,mode=IN},#{result,jdbcType=INTEGER,mode=OUT},#{id,jdbcType=INTEGER,mode=OUT})
+    </select>
+
+    <select id="deleteDepartmentById" statementType="CALLABLE">
+            call deleteDep(#{id,jdbcType=INTEGER,mode=IN},#{result,jdbcType=INTEGER,mode=OUT})
     </select>
 </mapper>

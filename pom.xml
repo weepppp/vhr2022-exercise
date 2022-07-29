@@ -19,6 +19,7 @@
         <module>vhr-framework</module>
         <module>vhr-system</module>
         <module>vhr-admin</module>
+        <module>vhr-employee</module>
     </modules>
 
     <properties>
@@ -35,6 +36,11 @@
             <dependency>
                 <groupId>org.qfedu</groupId>
                 <artifactId>vhr-system</artifactId>
+                <version>${vhr-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.qfedu</groupId>
+                <artifactId>vhr-employee</artifactId>
                 <version>${vhr-version}</version>
             </dependency>
         </dependencies>

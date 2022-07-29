@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="vhr-admin" />
         <module name="vhr-framework" />
+        <module name="vhr-employee" />
         <module name="vhr-system" />
       </profile>
     </annotationProcessing>
@@ -15,6 +16,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="vhr-admin" options="-parameters" />
+      <module name="vhr-employee" options="-parameters" />
       <module name="vhr-framework" options="-parameters" />
       <module name="vhr-system" options="-parameters" />
     </option>

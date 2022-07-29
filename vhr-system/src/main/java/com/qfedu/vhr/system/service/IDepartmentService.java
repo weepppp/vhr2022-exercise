@@ -1,8 +1,10 @@
 package com.qfedu.vhr.system.service;
 
+import com.qfedu.vhr.framework.entity.RespBean;
 import com.qfedu.vhr.system.entity.Department;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.qfedu.vhr.system.entity.vo.DepartMentVo;
+import com.qfedu.vhr.system.entity.vo.AddDepartmentVo;
+import com.qfedu.vhr.system.entity.vo.DepartmentChildrenVo;
 
 import java.util.List;
 
@@ -16,6 +18,10 @@ import java.util.List;
  */
 public interface IDepartmentService extends IService<Department> {
 
-    List<DepartMentVo> getAllDepts();
+    List<DepartmentChildrenVo> getAllDepts();
+
+    RespBean addDepartment(AddDepartmentVo department);
+
+    RespBean deleteDepartmentById(Integer id);
 
 }

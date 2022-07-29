@@ -42,4 +42,26 @@ where m1.id=m2.parentId and m2.id = mr.mid and mr.rid = hrr.rid and hrr.hrid = #
     <select id="getAllMenuRoles" resultMap="MenuWithRole">
         select m.id,m.url,r.name from menu m left join menu_role mr on m.id  = mr.mid LEFT JOIN role r on mr.rid = r.id ORDER BY m.id
     </select>
+
+    <select id="getAllMenusWithChildren" resultMap="MenuWithChildren">
+select m1.*,m2.`component` as component2,m2.`enabled` as enabled2,m2.`id` as id2,m2.`name` as name2,m2.`parentId` as parentId2,m2.`path` as path2
+from menu m1,menu m2 where m1.`id`=m2.`parentId` and m1.`id`!=1 order by m1.id
+    </select>
+
+    <select id="getSelectedMenus" resultType="java.lang.Integer">
+select m.`id` from role r left join menu_role mr on mr.`rid`=r.`id` left join menu m on m.`id`=mr.`mid` where r.`name`=#{name}
+    </select>
+
+    <delete id="deleteMenuRoleBybis">
+        delete from menu_role where rid=#{rid}
+    </delete>
+
+    <update id="updateRoleMenus">
+        insert into menu_role(mid,rid) values
+        <foreach collection="mids" separator="," item="mid">
+            (#{mid},#{rid})
+        </foreach>
+    </update>
+
+
 </mapper>

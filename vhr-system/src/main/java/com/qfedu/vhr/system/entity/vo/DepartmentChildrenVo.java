@@ -2,14 +2,15 @@ package com.qfedu.vhr.system.entity.vo;
 
 import com.qfedu.vhr.system.entity.Department;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author weepppp 2022/7/28 14:33
  **/
-public class DepartMentVo extends Department {
+public class DepartmentChildrenVo extends Department {
 
-    private  List<Department> children;
+    private List<Department> children = new ArrayList<>();
 
     public List<Department> getChildren() {
         return children;

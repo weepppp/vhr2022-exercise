@@ -2,6 +2,7 @@ package com.qfedu.vhr.framework.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.qfedu.vhr.framework.entity.Menu;
+import com.qfedu.vhr.framework.entity.RespBean;
 import com.qfedu.vhr.framework.entity.vo.MenuRoleVo;
 import com.qfedu.vhr.framework.entity.vo.MenuVo;
 
@@ -20,5 +21,11 @@ public interface IMenuService extends IService<Menu> {
     List<MenuVo> getAllMenus();
 
     List<MenuRoleVo> getAllMenuRoles();
+
+    List<MenuVo> getAllMenusWithChildren();
+
+    List<Integer> getSelectedMenus(String name);
+
+    RespBean updateRoleMenus(Integer rid, Integer[] mid);
 
 }

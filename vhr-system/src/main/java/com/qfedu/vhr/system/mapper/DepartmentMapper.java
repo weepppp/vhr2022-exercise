@@ -2,7 +2,8 @@ package com.qfedu.vhr.system.mapper;
 
 import com.qfedu.vhr.system.entity.Department;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.qfedu.vhr.system.entity.vo.DepartMentVo;
+import com.qfedu.vhr.system.entity.vo.AddDepartmentVo;
+import com.qfedu.vhr.system.entity.vo.DepartmentChildrenVo;
 
 import java.util.List;
 
@@ -16,6 +17,10 @@ import java.util.List;
  */
 public interface DepartmentMapper extends BaseMapper<Department> {
 
-    List<DepartMentVo> getAllDepts(int pid);
+    List<DepartmentChildrenVo> getAllDepts(int pid);
+
+    void addDepartment(AddDepartmentVo department);
+
+    void deleteDepartmentById(AddDepartmentVo addDepartmentVo);
 
 }

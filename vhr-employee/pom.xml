@@ -16,5 +16,9 @@
             <groupId>org.qfedu</groupId>
             <artifactId>vhr-framework</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.qfedu</groupId>
+            <artifactId>vhr-system</artifactId>
+        </dependency>
     </dependencies>
 </project>

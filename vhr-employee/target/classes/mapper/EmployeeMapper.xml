@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qfedu.vhr.employee.mapper.EmployeeMapper">
+
+<!--    <select id="getAllEmployees" resultType="com.qfedu.vhr.employee.entity.Employee">-->
+<!--select-->
+<!--employee.id,employee.`name`,employee.gender,employee.birthday,employee.idCard,employee.wedlock,nation.`name` as 'nationId',-->
+<!--employee.nativePlace,politicsstatus.`name` as 'politicId',employee.email,employee.phone,employee.address,department.`name` as 'departmentId',-->
+<!--joblevel.`name` as 'joblevelId',position.`name` as 'posId',employee.engageForm,employee.tiptopDegree,employee.specialty,employee.school,-->
+<!--employee.beginDate,employee.workState,employee.workID,employee.contractTerm,employee.conversionTime,-->
+<!--employee.notWorkDate,employee.beginContract,employee.endContract,employee.workAge-->
+<!--from employee,nation,position,politicsstatus,joblevel,department-->
+<!--where-->
+<!--employee.nationId = nation.id and-->
+<!--employee.politicId = politicsstatus.id and-->
+<!--employee.posId = position.id  and-->
+<!--employee.jobLevelId = joblevel.id  and-->
+<!--employee.departmentId = department.id-->
+<!--ORDER BY employee.id asc-->
+
+<!--    </select>-->
+</mapper>

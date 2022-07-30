@@ -8,9 +8,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author weepppp 2022/7/22 15:30
  **/
 @SpringBootApplication
-@MapperScan(basePackages = {"com.qfedu.vhr.framework.mapper","com.qfedu.vhr.system.mapper","com.qfedu.vhr.employee.mapper"})
+@MapperScan(basePackages = {"com.qfedu.vhr.framework.mapper"
+        , "com.qfedu.vhr.system.mapper"
+        , "com.qfedu.vhr.employee.mapper"
+        , "com.qfedu.vhr.employee.config"})
 public class VhrApp {
     public static void main(String[] args) {
-        SpringApplication.run(VhrApp.class,args);
+        SpringApplication.run(VhrApp.class, args);
     }
 }

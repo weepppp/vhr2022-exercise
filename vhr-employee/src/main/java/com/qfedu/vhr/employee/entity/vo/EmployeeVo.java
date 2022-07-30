@@ -1,5 +1,9 @@
 package com.qfedu.vhr.employee.entity.vo;
 
+import com.alibaba.excel.annotation.ExcelProperty;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.qfedu.vhr.framework.config.LocalDateTimeConverter;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -22,6 +26,7 @@ public class EmployeeVo implements Serializable {
     /**
      * 出生日期
      */
+    @ExcelProperty(index = 0,converter = LocalDateTimeConverter.class)
     private LocalDate birthday;
 
     /**
@@ -103,6 +108,7 @@ public class EmployeeVo implements Serializable {
     /**
      * 入职日期
      */
+    @ExcelProperty(index = 1,converter = LocalDateTimeConverter.class)
     private LocalDate beginDate;
 
     /**
@@ -118,26 +124,30 @@ public class EmployeeVo implements Serializable {
     /**
      * 合同期限
      */
-    private Object contractTerm;
+    private Double contractTerm;
 
     /**
      * 转正日期
      */
+    @ExcelProperty(index = 2,converter = LocalDateTimeConverter.class)
     private LocalDate conversionTime;
 
     /**
      * 离职日期
      */
+    @ExcelProperty(index = 3,converter = LocalDateTimeConverter.class)
     private LocalDate notWorkDate;
 
     /**
      * 合同起始日期
      */
+    @ExcelProperty(index = 4,converter = LocalDateTimeConverter.class)
     private LocalDate beginContract;
 
     /**
      * 合同终止日期
      */
+    @ExcelProperty(index = 5,converter = LocalDateTimeConverter.class)
     private LocalDate endContract;
 
     /**
@@ -321,11 +331,11 @@ public class EmployeeVo implements Serializable {
         this.workID = workID;
     }
 
-    public Object getContractTerm() {
+    public Double getContractTerm() {
         return contractTerm;
     }
 
-    public void setContractTerm(Object contractTerm) {
+    public void setContractTerm(Double contractTerm) {
         this.contractTerm = contractTerm;
     }
 

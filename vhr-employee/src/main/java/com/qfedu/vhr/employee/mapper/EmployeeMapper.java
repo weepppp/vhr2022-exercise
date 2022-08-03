@@ -18,6 +18,8 @@ import java.util.List;
 public interface EmployeeMapper extends BaseMapper<Employee> {
 
 
-    List<EmployeeVo> getAllEmployees(Page<EmployeeVo> p);
+//    List<EmployeeVo> getAllEmployees(Page<EmployeeVo> p);
+
+    Page<Employee> getEmployeeByPage(Page<Employee> p);
 
 }

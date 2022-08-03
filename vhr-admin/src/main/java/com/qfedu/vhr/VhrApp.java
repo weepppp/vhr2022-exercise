@@ -9,9 +9,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  **/
 @SpringBootApplication
 @MapperScan(basePackages = {"com.qfedu.vhr.framework.mapper"
-        , "com.qfedu.vhr.system.mapper"
+        , "com.qfedu.vhr.admin.controller.system.mapper"
         , "com.qfedu.vhr.employee.mapper"
         , "com.qfedu.vhr.employee.config"})
+//@MapperScan(basePackages = "com.qfedu.vhr")
 public class VhrApp {
     public static void main(String[] args) {
         SpringApplication.run(VhrApp.class, args);

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.qfedu.vhr.system.mapper.DepartmentMapper">
+<mapper namespace="com.qfedu.vhr.admin.controller.system.mapper.DepartmentMapper">
 
     <!--    -->
-    <!--    <resultMap id="BaseResultMap" type="com.qfedu.vhr.system.entity.Department">-->
+    <!--    <resultMap id="BaseResultMap" type="com.qfedu.vhr.admin.controller.system.entity.Department">-->
     <!--        <id property="id" column="id"/>-->
     <!--        <result property="name" column="name"/>-->
     <!--        <result property="parentId" column="parentId"/>-->
@@ -13,21 +13,21 @@
     <!--        -->
     <!--    </resultMap>-->
 
-    <!--    <resultMap id="DepWithChildren" type="com.qfedu.vhr.system.entity.vo.DepartmentChildrenVo" extends="BaseResultMap" >-->
-    <!--        <collection property="children" ofType="com.qfedu.vhr.system.entity.Department"-->
-    <!--                    select="com.qfedu.vhr.system.mapper.DepartmentMapper.getAllDepts" column="id">-->
+    <!--    <resultMap id="DepWithChildren" type="com.qfedu.vhr.admin.controller.system.entity.vo.DepartmentChildrenVo" extends="BaseResultMap" >-->
+    <!--        <collection property="children" ofType="com.qfedu.vhr.admin.controller.system.entity.Department"-->
+    <!--                    select="com.qfedu.vhr.admin.controller.system.mapper.DepartmentMapper.getAllDepts" column="id">-->
     <!--        </collection>-->
     <!--    </resultMap>-->
 
-    <resultMap id="BaseResultMap" type="com.qfedu.vhr.system.entity.vo.DepartmentChildrenVo">
+    <resultMap id="BaseResultMap" type="com.qfedu.vhr.admin.controller.system.entity.vo.DepartmentChildrenVo">
         <id property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="parentId" column="parentId"/>
         <result property="enabled" column="enabled"/>
         <result property="depPath" column="depPath"/>
         <result property="isParent" column="isParent"/>
-        <collection property="children" ofType="com.qfedu.vhr.system.entity.Department"
-                    select="com.qfedu.vhr.system.mapper.DepartmentMapper.getAllDepts" column="id">
+        <collection property="children" ofType="com.qfedu.vhr.admin.controller.system.entity.Department"
+                    select="com.qfedu.vhr.admin.controller.system.mapper.DepartmentMapper.getAllDepts" column="id">
         </collection>
     </resultMap>
 
@@ -43,5 +43,8 @@
 
     <select id="deleteDepartmentById" statementType="CALLABLE">
             call deleteDep(#{id,jdbcType=INTEGER,mode=IN},#{result,jdbcType=INTEGER,mode=OUT})
+    </select>
+    <select id="selectByDepartmentName" resultType="com.qfedu.vhr.admin.controller.system.entity.Department">
+        select * from department where name = #{name}
     </select>
 </mapper>

@@ -1,8 +1,8 @@
 package com.qfedu.vhr.admin.controller.system.controller;
 
 import com.qfedu.vhr.framework.entity.RespBean;
-import com.qfedu.vhr.system.entity.Joblevel;
-import com.qfedu.vhr.system.service.IJoblevelService;
+import com.qfedu.vhr.admin.controller.system.entity.Joblevel;
+import com.qfedu.vhr.admin.controller.system.service.IJoblevelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

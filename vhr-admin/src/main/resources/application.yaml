@@ -9,3 +9,7 @@ server:
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: false
+
+logging:
+  level:
+    com.qfedu.vhr.admin: debug

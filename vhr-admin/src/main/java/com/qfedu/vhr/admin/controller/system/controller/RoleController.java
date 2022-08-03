@@ -4,7 +4,7 @@ import com.qfedu.vhr.framework.entity.RespBean;
 import com.qfedu.vhr.framework.entity.Role;
 import com.qfedu.vhr.framework.entity.vo.MenuVo;
 import com.qfedu.vhr.framework.service.IMenuService;
-import com.qfedu.vhr.system.service.IRoleService;
+import com.qfedu.vhr.admin.controller.system.service.IRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;

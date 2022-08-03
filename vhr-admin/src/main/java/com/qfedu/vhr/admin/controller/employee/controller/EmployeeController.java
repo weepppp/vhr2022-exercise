@@ -2,14 +2,11 @@ package com.qfedu.vhr.admin.controller.employee.controller;
 
 import com.alibaba.excel.EasyExcel;
 import com.qfedu.vhr.employee.config.DoloadConfig;
-import com.qfedu.vhr.employee.config.EmployeeDoToVo;
-import com.qfedu.vhr.employee.config.EmployeeDoToVoConfig;
 import com.qfedu.vhr.employee.entity.Employee;
 import com.qfedu.vhr.employee.entity.vo.EmployeeVo;
 import com.qfedu.vhr.employee.service.IEmployeeService;
 import com.qfedu.vhr.framework.entity.RespBean;
 import com.qfedu.vhr.framework.entity.RespPageBean;
-import com.qfedu.vhr.system.entity.Position;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;

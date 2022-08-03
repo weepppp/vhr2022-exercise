@@ -6,7 +6,7 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-07-30T10:49:44+0800",
+    date = "2022-08-03T14:01:10+0800",
     comments = "version: 1.3.1.Final, compiler: javac, environment: Java 1.8.0_231 (Oracle Corporation)"
 )
 public class EmployeeDoToVoImpl implements EmployeeDoToVo {
@@ -44,5 +44,40 @@ public class EmployeeDoToVoImpl implements EmployeeDoToVo {
         employeeVo.setWorkAge( employee.getWorkAge() );
 
         return employeeVo;
+    }
+
+    @Override
+    public Employee employVO2DO(EmployeeVo employeeVo) {
+        if ( employeeVo == null ) {
+            return null;
+        }
+
+        Employee employee = new Employee();
+
+        employee.setId( employeeVo.getId() );
+        employee.setName( employeeVo.getName() );
+        employee.setGender( employeeVo.getGender() );
+        employee.setBirthday( employeeVo.getBirthday() );
+        employee.setIdCard( employeeVo.getIdCard() );
+        employee.setWedlock( employeeVo.getWedlock() );
+        employee.setNativePlace( employeeVo.getNativePlace() );
+        employee.setEmail( employeeVo.getEmail() );
+        employee.setPhone( employeeVo.getPhone() );
+        employee.setAddress( employeeVo.getAddress() );
+        employee.setEngageForm( employeeVo.getEngageForm() );
+        employee.setTiptopDegree( employeeVo.getTiptopDegree() );
+        employee.setSpecialty( employeeVo.getSpecialty() );
+        employee.setSchool( employeeVo.getSchool() );
+        employee.setBeginDate( employeeVo.getBeginDate() );
+        employee.setWorkState( employeeVo.getWorkState() );
+        employee.setWorkID( employeeVo.getWorkID() );
+        employee.setContractTerm( employeeVo.getContractTerm() );
+        employee.setConversionTime( employeeVo.getConversionTime() );
+        employee.setNotWorkDate( employeeVo.getNotWorkDate() );
+        employee.setBeginContract( employeeVo.getBeginContract() );
+        employee.setEndContract( employeeVo.getEndContract() );
+        employee.setWorkAge( employeeVo.getWorkAge() );
+
+        return employee;
     }
 }

@@ -1,7 +1,13 @@
 package com.qfedu.vhr.employee.entity;
 
+import com.alibaba.excel.annotation.ExcelProperty;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.qfedu.vhr.framework.config.LocalDateTimeConverter;
+import com.qfedu.vhr.admin.controller.system.entity.Department;
+import com.qfedu.vhr.admin.controller.system.entity.Joblevel;
+import com.qfedu.vhr.admin.controller.system.entity.Position;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -36,6 +42,7 @@ public class Employee implements Serializable {
     /**
      * 出生日期
      */
+    @ExcelProperty(index = 0,converter = LocalDateTimeConverter.class)
     private LocalDate birthday;
 
     /**
@@ -86,7 +93,51 @@ public class Employee implements Serializable {
      * 联系地址
      */
     private String address;
+    private Nation nation;
+    private Politicsstatus politicsstatus;
+    private Department department;
+    private Joblevel jobLevel;
+    private Position position;
 
+    public Nation getNation() {
+        return nation;
+    }
+
+    public void setNation(Nation nation) {
+        this.nation = nation;
+    }
+
+    public Politicsstatus getPoliticsstatus() {
+        return politicsstatus;
+    }
+
+    public void setPoliticsstatus(Politicsstatus politicsstatus) {
+        this.politicsstatus = politicsstatus;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    public Joblevel getJobLevel() {
+        return jobLevel;
+    }
+
+    public void setJobLevel(Joblevel jobLevel) {
+        this.jobLevel = jobLevel;
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
     /**
      * 所属部门
      */
@@ -122,6 +173,7 @@ public class Employee implements Serializable {
     /**
      * 入职日期
      */
+    @ExcelProperty(index = 1,converter = LocalDateTimeConverter.class)
     private LocalDate beginDate;
 
     /**
@@ -142,21 +194,25 @@ public class Employee implements Serializable {
     /**
      * 转正日期
      */
+    @ExcelProperty(index = 2,converter = LocalDateTimeConverter.class)
     private LocalDate conversionTime;
 
     /**
      * 离职日期
      */
+    @ExcelProperty(index = 3,converter = LocalDateTimeConverter.class)
     private LocalDate notWorkDate;
 
     /**
      * 合同起始日期
      */
+    @ExcelProperty(index = 4,converter = LocalDateTimeConverter.class)
     private LocalDate beginContract;
 
     /**
      * 合同终止日期
      */
+    @ExcelProperty(index = 5,converter = LocalDateTimeConverter.class)
     private LocalDate endContract;
 
     /**
@@ -403,9 +459,19 @@ public class Employee implements Serializable {
                 ", idCard='" + idCard + '\'' +
                 ", wedlock='" + wedlock + '\'' +
                 ", nativePlace='" + nativePlace + '\'' +
+                ", nationId=" + nationId +
+                ", politicId=" + politicId +
+                ", departmentId=" + departmentId +
+                ", jobLevelId=" + jobLevelId +
+                ", posId=" + posId +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
+                ", nation=" + nation +
+                ", politicsstatus=" + politicsstatus +
+                ", department=" + department +
+                ", jobLevel=" + jobLevel +
+                ", position=" + position +
                 ", engageForm='" + engageForm + '\'' +
                 ", tiptopDegree='" + tiptopDegree + '\'' +
                 ", specialty='" + specialty + '\'' +
@@ -419,11 +485,6 @@ public class Employee implements Serializable {
                 ", beginContract=" + beginContract +
                 ", endContract=" + endContract +
                 ", workAge=" + workAge +
-                ", nationId=" + nationId +
-                ", politicId=" + politicId +
-                ", departmentId=" + departmentId +
-                ", jobLevelId=" + jobLevelId +
-                ", posId=" + posId +
                 '}';
     }
 }

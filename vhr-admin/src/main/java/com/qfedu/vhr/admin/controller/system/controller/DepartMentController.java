@@ -1,10 +1,10 @@
 package com.qfedu.vhr.admin.controller.system.controller;
 
 import com.qfedu.vhr.framework.entity.RespBean;
-import com.qfedu.vhr.system.entity.Department;
-import com.qfedu.vhr.system.entity.vo.AddDepartmentVo;
-import com.qfedu.vhr.system.entity.vo.DepartmentChildrenVo;
-import com.qfedu.vhr.system.service.IDepartmentService;
+import com.qfedu.vhr.admin.controller.system.entity.Department;
+import com.qfedu.vhr.admin.controller.system.entity.vo.AddDepartmentVo;
+import com.qfedu.vhr.admin.controller.system.entity.vo.DepartmentChildrenVo;
+import com.qfedu.vhr.admin.controller.system.service.IDepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

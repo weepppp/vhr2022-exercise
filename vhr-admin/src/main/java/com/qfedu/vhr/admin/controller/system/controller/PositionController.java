@@ -3,17 +3,15 @@ package com.qfedu.vhr.admin.controller.system.controller;
 import com.alibaba.excel.EasyExcel;
 import com.qfedu.vhr.framework.entity.RespBean;
 import com.qfedu.vhr.framework.entity.RespPageBean;
-import com.qfedu.vhr.system.entity.Position;
-import com.qfedu.vhr.system.service.IPositionService;
+import com.qfedu.vhr.admin.controller.system.entity.Position;
+import com.qfedu.vhr.admin.controller.system.service.IPositionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.List;
 
 /**
  * @author weepppp 2022/7/27 10:01

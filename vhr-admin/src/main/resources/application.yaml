@@ -3,6 +3,15 @@ spring:
     username: root
     url: jdbc:mysql:///vhr?serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true
     password: 1234
+  rabbitmq:
+    host: 196.168.31.128
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+    publisher-confirm-type: correlated
+    publisher-returns: true
+
 server:
   port: 8083
 
@@ -13,3 +22,5 @@ mybatis-plus:
 logging:
   level:
     com.qfedu.vhr.admin: debug
+
+

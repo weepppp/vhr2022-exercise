@@ -10,6 +10,7 @@
         <module name="vhr-admin" />
         <module name="vhr-framework" />
         <module name="vhr-employee" />
+        <module name="vhr-mail" />
         <module name="vhr-system" />
       </profile>
     </annotationProcessing>
@@ -19,6 +20,7 @@
       <module name="vhr-admin" options="-parameters" />
       <module name="vhr-employee" options="-parameters" />
       <module name="vhr-framework" options="-parameters" />
+      <module name="vhr-mail" options="-parameters" />
       <module name="vhr-system" options="-parameters" />
     </option>
   </component>

@@ -22,4 +22,6 @@ public interface IEmployeeService extends IService<Employee> {
 
     RespBean importPositionData(MultipartFile file);
 
+    void addMailEmployees(Employee employee);
+
 }

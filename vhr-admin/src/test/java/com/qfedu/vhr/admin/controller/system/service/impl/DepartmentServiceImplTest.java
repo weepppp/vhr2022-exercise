@@ -5,6 +5,7 @@ import com.qfedu.vhr.admin.controller.system.mapper.DepartmentMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.util.Assert;
 
 
 /**
@@ -20,6 +21,6 @@ public class DepartmentServiceImplTest {
     @Test
     public void getAllDepts() {
         System.out.println(departmentMapper.getAllDepts(-1));
-//       Assert.notNull(departmentMapper.getAllDepts(-1));
+//       Assert.isNull(departmentMapper.getAllDepts(-1));
     }
 }

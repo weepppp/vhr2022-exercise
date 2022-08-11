@@ -4,22 +4,27 @@ import com.alibaba.excel.EasyExcel;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.qfedu.vhr.employee.config.EmployeeDoToVoConfig;
 import com.qfedu.vhr.employee.entity.Employee;
-import com.qfedu.vhr.employee.entity.vo.EmployeeVo;
-import com.qfedu.vhr.employee.excel.EmployeeListener;
+import com.qfedu.vhr.employee.entity.MailSendLog;
 import com.qfedu.vhr.employee.mapper.EmployeeMapper;
 import com.qfedu.vhr.employee.service.IEmployeeService;
+import com.qfedu.vhr.employee.service.IMailSendLogService;
+import com.qfedu.vhr.framework.config.MailSendConfig;
 import com.qfedu.vhr.framework.entity.RespBean;
 import com.qfedu.vhr.framework.entity.RespPageBean;
-import org.springframework.beans.BeanUtils;
+import com.qfedu.vhr.framework.entity.vo.EmployeeDTO;
+import org.springframework.amqp.rabbit.connection.CorrelationData;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.UUID;
 
 /**
  * <p>
@@ -32,10 +37,16 @@ import java.util.stream.Collectors;
 @Service
 public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> implements IEmployeeService {
 
+//    @Autowired
+//    EmployeeMapper employeeMapper;
+//    @Autowired
+//    EmployeeDoToVoConfig employeeDoToVoConfig;
+//
     @Autowired
-    EmployeeMapper employeeMapper;
+    RabbitTemplate rabbitTemplate;
+
     @Autowired
-    EmployeeDoToVoConfig employeeDoToVoConfig;
+    IMailSendLogService mailSendLogService;
 
     @Override
     public RespPageBean getAllEmployees(Integer page, Integer size) {
@@ -51,8 +62,8 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
 //        pvo.setCurrent(employeePage.getCurrent());
 //        pvo.setPages(employeePage.getPages());
 //        pvo.setSize(employeePage.getSize());
-        Page<Employee> employeePage =  employeeMapper.getEmployeeByPage(p);
-        return new RespPageBean(employeePage.getTotal(), employeePage.getRecords());
+//        Page<Employee> employeePage =  employeeMapper.getEmployeeByPage(p);
+        return new RespPageBean();
     }
 
 
@@ -74,12 +85,35 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
 
     @Override
     public RespBean importPositionData(MultipartFile file) {
-        try {
-            EasyExcel.read(file.getInputStream(), EmployeeVo.class,new EmployeeListener(this)).sheet().doRead();
-            return RespBean.ok("导入成功");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+////            EasyExcel.read(file.getInputStream(), EmployeeVo.class,new EmployeeListener(this)).sheet().doRead();
+//            return RespBean.ok("导入成功");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
         return RespBean.error("导入失败");
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void addMailEmployees(Employee employee) {
+        save(employee);
+        MailSendLog mailSendLog = new MailSendLog();
+        String msgId = UUID.randomUUID().toString();
+        mailSendLog.setMsgId(msgId);
+        mailSendLog.setExchange(MailSendConfig.MAIL_SEND_EXCHANGE_NAME);
+        mailSendLog.setRouteKey(MailSendConfig.MAIL_SEND_QUEUE_NAME);
+        mailSendLog.setTryTime(LocalDateTime.ofInstant(new Date(System.currentTimeMillis()+60*1000).toInstant(), ZoneId.of("Asia/Shanghai")));
+        mailSendLog.setStatus(0);
+        mailSendLog.setCreateTime(LocalDateTime.now());
+        mailSendLog.setCount(0);
+        mailSendLog.setEmpId(employee.getId());
+        mailSendLogService.save(mailSendLog);
+        EmployeeDTO employeeDTO = new EmployeeDTO();
+        employeeDTO.setId(employee.getId());
+        employeeDTO.setEmail(employee.getEmail());
+        employeeDTO.setName(employee.getName());
+        rabbitTemplate.convertAndSend(MailSendConfig.MAIL_SEND_EXCHANGE_NAME,MailSendConfig.MAIL_SEND_QUEUE_NAME,employeeDTO,new CorrelationData(msgId));
+
     }
 }

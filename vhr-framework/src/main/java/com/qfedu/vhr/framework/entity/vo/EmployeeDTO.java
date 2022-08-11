@@ -1,19 +1,12 @@
-package com.qfedu.vhr.employee.entity;
+package com.qfedu.vhr.framework.entity.vo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 
-/**
- * <p>
- *
- * </p>
- *
- * @author qf
- * @since 2022-08-11
- */
-public class Employee implements Serializable {
+public class EmployeeDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
